@@ -456,6 +456,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this.userName = profile.getName();
             _this.userImage = profile.getImageUrl();
             _this.userEmail = profile.getEmail();
+            console.log(_this.token);
+            console.log(_this.id);
+            console.log(_this.userName);
+            console.log(_this.userImage);
+            console.log(_this.userEmail);
           }, function (error) {
             alert(JSON.stringify(error, undefined, 2));
           });

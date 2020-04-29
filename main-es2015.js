@@ -278,6 +278,11 @@ class AppComponent {
             this.userName = profile.getName();
             this.userImage = profile.getImageUrl();
             this.userEmail = profile.getEmail();
+            console.log(this.token);
+            console.log(this.id);
+            console.log(this.userName);
+            console.log(this.userImage);
+            console.log(this.userEmail);
         }, (error) => {
             alert(JSON.stringify(error, undefined, 2));
         });
