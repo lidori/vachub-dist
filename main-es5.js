@@ -2257,9 +2257,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "postRest",
         value: function postRest() {
           return this.httpClient.post(this.url, {
-            id: 'id',
-            username: 'my user name',
-            image: 'image'
+            id: this.user.id,
+            username: this.user.username,
+            image: this.user.image
           }, {
             responseType: 'text'
           });

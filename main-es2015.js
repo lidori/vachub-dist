@@ -1258,7 +1258,7 @@ class HomeComponent {
     }
     postRest() {
         return this.httpClient
-            .post(this.url, { id: 'id', username: 'my user name', image: 'image' }, { responseType: 'text' });
+            .post(this.url, { id: this.user.id, username: this.user.username, image: this.user.image }, { responseType: 'text' });
     }
 }
 HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_1__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
