@@ -388,9 +388,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             if (authenticated) {
               //remove
-              console.log('in prepare login this.returnUrl is ', _this.returnUrl);
+              console.log('in prepare login this.returnUrl is ', _this.returnUrl); //remove
 
-              _this.router.navigate([_this.returnUrl]);
+              console.log('Zone1!!!');
+
+              _this.ngZone.run(function () {
+                return _this.router.navigate([_this.returnUrl]);
+              });
             } else {
               _this.alertService.error('Not authenticated');
 
@@ -450,13 +454,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 client_id: '84095791683-jamqlcm8okffem4uldev6oas68stqjlh.apps.googleusercontent.com',
                 cookiepolicy: 'single_host_origin',
                 scope: 'profile email'
-              }); //remove
-
-              console.log('Zone!!!');
-
-              _this2.ngZone.run(function () {
-                return _this2.prepareLoginButton();
               });
+
+              _this2.prepareLoginButton();
             });
           };
 

@@ -203,7 +203,9 @@ class LoginComponent {
             if (authenticated) {
                 //remove
                 console.log('in prepare login this.returnUrl is ', this.returnUrl);
-                this.router.navigate([this.returnUrl]);
+                //remove
+                console.log('Zone1!!!');
+                this.ngZone.run(() => this.router.navigate([this.returnUrl]));
             }
             else {
                 this.alertService.error('Not authenticated');
@@ -253,9 +255,7 @@ class LoginComponent {
                     cookiepolicy: 'single_host_origin',
                     scope: 'profile email'
                 });
-                //remove
-                console.log('Zone!!!');
-                this.ngZone.run(() => this.prepareLoginButton());
+                this.prepareLoginButton();
             });
         };
         (function (d, s, id) {
