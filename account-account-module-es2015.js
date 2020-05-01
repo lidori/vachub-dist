@@ -253,6 +253,8 @@ class LoginComponent {
                     cookiepolicy: 'single_host_origin',
                     scope: 'profile email'
                 });
+                //remove
+                console.log('Zone!!!');
                 this.ngZone.run(() => this.prepareLoginButton());
             });
         };

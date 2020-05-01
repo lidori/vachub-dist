@@ -450,7 +450,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 client_id: '84095791683-jamqlcm8okffem4uldev6oas68stqjlh.apps.googleusercontent.com',
                 cookiepolicy: 'single_host_origin',
                 scope: 'profile email'
-              });
+              }); //remove
+
+              console.log('Zone!!!');
 
               _this2.ngZone.run(function () {
                 return _this2.prepareLoginButton();
