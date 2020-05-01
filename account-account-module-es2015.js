@@ -182,6 +182,7 @@ class LoginComponent {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.googleSDK();
+        this.accountService.loginSubject.subscribe(result => console.log('login got result ' + result));
     }
     prepareLoginButton() {
         this.auth2.attachClickHandler(this.loginElement.nativeElement, {}, (googleUser) => {

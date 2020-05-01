@@ -357,6 +357,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // get return url from route parameters or default to '/'
           this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.googleSDK();
+          this.accountService.loginSubject.subscribe(function (result) {
+            return console.log('login got result ' + result);
+          });
         }
       }, {
         key: "prepareLoginButton",
