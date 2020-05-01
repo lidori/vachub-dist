@@ -340,13 +340,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _c0 = ["loginRef"];
 
     var LoginComponent = /*#__PURE__*/function () {
-      function LoginComponent(route, router, accountService, alertService) {
+      function LoginComponent(route, router, accountService, alertService, ngZone) {
         _classCallCheck(this, LoginComponent);
 
         this.route = route;
         this.router = router;
         this.accountService = accountService;
         this.alertService = alertService;
+        this.ngZone = ngZone;
         this.loading = false;
         this.submitted = false;
       }
@@ -357,9 +358,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // get return url from route parameters or default to '/'
           this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.googleSDK();
-          this.accountService.loginSubject.subscribe(function (result) {
-            return console.log('login got result ' + result);
-          });
         }
       }, {
         key: "prepareLoginButton",
@@ -454,7 +452,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 scope: 'profile email'
               });
 
-              _this2.prepareLoginButton();
+              _this2.ngZone.run(function () {
+                return _this2.prepareLoginButton();
+              });
             });
           };
 
@@ -487,7 +487,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     LoginComponent.ɵfac = function LoginComponent_Factory(t) {
-      return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"]));
+      return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]));
     };
 
     LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -552,6 +552,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _services__WEBPACK_IMPORTED_MODULE_2__["AccountService"]
         }, {
           type: _services__WEBPACK_IMPORTED_MODULE_2__["AlertService"]
+        }, {
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]
         }];
       }, {
         loginElement: [{

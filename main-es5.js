@@ -1087,7 +1087,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.router = router;
         this.http = http;
         this.userSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](JSON.parse(localStorage.getItem('user')));
-        this.loginSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.user = this.userSubject.asObservable();
       }
 
@@ -1099,7 +1098,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           console.log('in login user is ', user);
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
-          this.loginSubject.next(user);
           return true;
         } // login(username, password) {
         //     return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })

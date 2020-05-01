@@ -170,11 +170,12 @@ __webpack_require__.r(__webpack_exports__);
 
 const _c0 = ["loginRef"];
 class LoginComponent {
-    constructor(route, router, accountService, alertService) {
+    constructor(route, router, accountService, alertService, ngZone) {
         this.route = route;
         this.router = router;
         this.accountService = accountService;
         this.alertService = alertService;
+        this.ngZone = ngZone;
         this.loading = false;
         this.submitted = false;
     }
@@ -182,7 +183,6 @@ class LoginComponent {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.googleSDK();
-        this.accountService.loginSubject.subscribe(result => console.log('login got result ' + result));
     }
     prepareLoginButton() {
         this.auth2.attachClickHandler(this.loginElement.nativeElement, {}, (googleUser) => {
@@ -253,7 +253,7 @@ class LoginComponent {
                     cookiepolicy: 'single_host_origin',
                     scope: 'profile email'
                 });
-                this.prepareLoginButton();
+                this.ngZone.run(() => this.prepareLoginButton());
             });
         };
         (function (d, s, id) {
@@ -275,7 +275,7 @@ class LoginComponent {
         this.userEmail = 'shira.yoked@gmail.com';
     }
 }
-LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"])); };
+LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"])); };
 LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["ng-component"]], viewQuery: function LoginComponent_Query(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstaticViewQuery"](_c0, true);
     } if (rf & 2) {
@@ -296,7 +296,7 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](LoginComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{ templateUrl: 'login.component.html' }]
-    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }, { type: _services__WEBPACK_IMPORTED_MODULE_2__["AccountService"] }, { type: _services__WEBPACK_IMPORTED_MODULE_2__["AlertService"] }]; }, { loginElement: [{
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }, { type: _services__WEBPACK_IMPORTED_MODULE_2__["AccountService"] }, { type: _services__WEBPACK_IMPORTED_MODULE_2__["AlertService"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"] }]; }, { loginElement: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
             args: ['loginRef', { static: true }]
         }] }); })();
