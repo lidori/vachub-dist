@@ -380,9 +380,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               id: _this.userEmail,
               username: _this.userName,
               image: _this.userImage
-            }, _this.auth2);
+            }, _this.auth2); //remove
+
+
+            console.log('in prepare login auth is ', authenticated);
 
             if (authenticated) {
+              //remove
+              console.log('in prepare login this.returnUrl is ', _this.returnUrl);
+
               _this.router.navigate([_this.returnUrl]);
             } else {
               _this.alertService.error('Not authenticated');
@@ -412,30 +418,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.alertService.error('Not authenticated');
             this.loading = false;
           }
-        } //TODO need to sign out, put auth in the account service maybe
+        } // signOut() {
+        //   this.auth2.signOut().then(function () {
+        //     this.token = undefined;
+        //     this.id = undefined;
+        //     this.userName = undefined;
+        //     this.userImage = undefined;
+        //     this.userEmail = undefined;
+        //     console.log('User signed out.');
+        //   });
+        // }
+        //
+        // fakeSignOut() {
+        //   this.token = undefined;
+        //   this.id = undefined;
+        //   this.userName = undefined;
+        //   this.userImage = undefined;
+        //   this.userEmail = undefined;
+        //   console.log('User signed out.');
+        // }
 
-      }, {
-        key: "signOut",
-        value: function signOut() {
-          this.auth2.signOut().then(function () {
-            this.token = undefined;
-            this.id = undefined;
-            this.userName = undefined;
-            this.userImage = undefined;
-            this.userEmail = undefined;
-            console.log('User signed out.');
-          });
-        }
-      }, {
-        key: "fakeSignOut",
-        value: function fakeSignOut() {
-          this.token = undefined;
-          this.id = undefined;
-          this.userName = undefined;
-          this.userImage = undefined;
-          this.userEmail = undefined;
-          console.log('User signed out.');
-        }
       }, {
         key: "googleSDK",
         value: function googleSDK() {

@@ -197,7 +197,11 @@ class LoginComponent {
             console.log(this.userImage);
             console.log(this.userEmail);
             const authenticated = this.accountService.login({ id: this.userEmail, username: this.userName, image: this.userImage }, this.auth2);
+            //remove
+            console.log('in prepare login auth is ', authenticated);
             if (authenticated) {
+                //remove
+                console.log('in prepare login this.returnUrl is ', this.returnUrl);
                 this.router.navigate([this.returnUrl]);
             }
             else {
@@ -221,25 +225,25 @@ class LoginComponent {
             this.loading = false;
         }
     }
-    //TODO need to sign out, put auth in the account service maybe
-    signOut() {
-        this.auth2.signOut().then(function () {
-            this.token = undefined;
-            this.id = undefined;
-            this.userName = undefined;
-            this.userImage = undefined;
-            this.userEmail = undefined;
-            console.log('User signed out.');
-        });
-    }
-    fakeSignOut() {
-        this.token = undefined;
-        this.id = undefined;
-        this.userName = undefined;
-        this.userImage = undefined;
-        this.userEmail = undefined;
-        console.log('User signed out.');
-    }
+    // signOut() {
+    //   this.auth2.signOut().then(function () {
+    //     this.token = undefined;
+    //     this.id = undefined;
+    //     this.userName = undefined;
+    //     this.userImage = undefined;
+    //     this.userEmail = undefined;
+    //     console.log('User signed out.');
+    //   });
+    // }
+    //
+    // fakeSignOut() {
+    //   this.token = undefined;
+    //   this.id = undefined;
+    //   this.userName = undefined;
+    //   this.userImage = undefined;
+    //   this.userEmail = undefined;
+    //   console.log('User signed out.');
+    // }
     googleSDK() {
         window['googleSDKLoaded'] = () => {
             window['gapi'].load('auth2', () => {

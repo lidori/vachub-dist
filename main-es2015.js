@@ -576,7 +576,10 @@ class AccountService {
         return this.userSubject.value;
     }
     login(user, auth) {
-        this.auth2 = auth;
+        if (auth)
+            this.auth2 = auth;
+        //remove
+        console.log('in login user is ', user);
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return true;
