@@ -962,7 +962,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     !*** ./src/app/_models/index.ts ***!
     \**********************************/
 
-  /*! exports provided: Alert, AlertType, User */
+  /*! exports provided: Alert, AlertType, VacationType */
 
   /***/
   function srcApp_modelsIndexTs(module, __webpack_exports__, __webpack_require__) {
@@ -990,42 +990,51 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./user */
-    "./src/app/_models/user.ts");
+    var _vacation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./vacation */
+    "./src/app/_models/vacation.ts");
     /* harmony reexport (safe) */
 
 
-    __webpack_require__.d(__webpack_exports__, "User", function () {
-      return _user__WEBPACK_IMPORTED_MODULE_1__["User"];
+    __webpack_require__.d(__webpack_exports__, "VacationType", function () {
+      return _vacation__WEBPACK_IMPORTED_MODULE_1__["VacationType"];
     });
     /***/
 
   },
 
   /***/
-  "./src/app/_models/user.ts":
-  /*!*********************************!*\
-    !*** ./src/app/_models/user.ts ***!
-    \*********************************/
+  "./src/app/_models/vacation.ts":
+  /*!*************************************!*\
+    !*** ./src/app/_models/vacation.ts ***!
+    \*************************************/
 
-  /*! exports provided: User */
+  /*! exports provided: VacationType */
 
   /***/
-  function srcApp_modelsUserTs(module, __webpack_exports__, __webpack_require__) {
+  function srcApp_modelsVacationTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "User", function () {
-      return User;
+    __webpack_require__.d(__webpack_exports__, "VacationType", function () {
+      return VacationType;
     });
 
-    var User = function User() {
-      _classCallCheck(this, User);
-    };
+    var VacationType;
+
+    (function (VacationType) {
+      VacationType["Cruise"] = "Cruise";
+      VacationType["Travel"] = "Travel";
+      VacationType["Sports"] = "Sports";
+      VacationType["Shopping"] = "Shopping";
+      VacationType["Flight"] = "Flight";
+      VacationType["Business"] = "Business";
+      VacationType["Virtual"] = "Virtual";
+      VacationType["Other"] = "Other";
+    })(VacationType || (VacationType = {}));
     /***/
 
   },
@@ -1112,12 +1121,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "logout",
         value: function logout() {
-          //TODO call google sign out!
           //remove user from local storage and set current user to null
           localStorage.removeItem('user');
           this.googleSignOut();
-          this.userSubject.next(null);
-          this.router.navigate(['/account/login']);
+          this.userSubject.next(null); //this.router.navigate(['/account/login']);
+
+          this.router.navigate(['/account/register']);
         }
       }, {
         key: "googleSignOut",
@@ -1319,7 +1328,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     !*** ./src/app/_services/index.ts ***!
     \************************************/
 
-  /*! exports provided: AccountService, AlertService */
+  /*! exports provided: AccountService, AlertService, VacationService */
 
   /***/
   function srcApp_servicesIndexTs(module, __webpack_exports__, __webpack_require__) {
@@ -1350,6 +1359,110 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     __webpack_require__.d(__webpack_exports__, "AlertService", function () {
       return _alert_service__WEBPACK_IMPORTED_MODULE_1__["AlertService"];
     });
+    /* harmony import */
+
+
+    var _vacation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./vacation.service */
+    "./src/app/_services/vacation.service.ts");
+    /* harmony reexport (safe) */
+
+
+    __webpack_require__.d(__webpack_exports__, "VacationService", function () {
+      return _vacation_service__WEBPACK_IMPORTED_MODULE_2__["VacationService"];
+    });
+    /***/
+
+  },
+
+  /***/
+  "./src/app/_services/vacation.service.ts":
+  /*!***********************************************!*\
+    !*** ./src/app/_services/vacation.service.ts ***!
+    \***********************************************/
+
+  /*! exports provided: VacationService */
+
+  /***/
+  function srcApp_servicesVacationServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "VacationService", function () {
+      return VacationService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../environments/environment */
+    "./src/environments/environment.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+    var VacationService = /*#__PURE__*/function () {
+      function VacationService(httpClient) {
+        _classCallCheck(this, VacationService);
+
+        this.httpClient = httpClient;
+      }
+
+      _createClass(VacationService, [{
+        key: "getAll",
+        value: function getAll() {
+          return this.httpClient.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl, "/vacation"));
+        }
+      }, {
+        key: "createVacation",
+        value: function createVacation(vacation) {
+          return this.httpClient.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl, "/vacation"), {
+            id: vacation.id,
+            title: vacation.title,
+            description: vacation.description,
+            type: vacation.type
+          });
+        }
+      }]);
+
+      return VacationService;
+    }();
+
+    VacationService.ɵfac = function VacationService_Factory(t) {
+      return new (t || VacationService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]));
+    };
+
+    VacationService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: VacationService,
+      factory: VacationService.ɵfac,
+      providedIn: 'root'
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](VacationService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+          providedIn: 'root'
+        }]
+      }], function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+        }];
+      }, null);
+    })();
     /***/
 
   },
@@ -1445,6 +1558,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! @angular/material/divider */
     "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/divider.js");
+    /* harmony import */
+
+
+    var _angular_material_table__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! @angular/material/table */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
+    /* harmony import */
+
+
+    var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! @angular/material/checkbox */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/checkbox.js");
+    /* harmony import */
+
+
+    var _angular_material_select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! @angular/material/select */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/select.js");
+    /* harmony import */
+
+
+    var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    /*! @angular/material/progress-spinner */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/progress-spinner.js");
 
     var AngularMaterialModule = function AngularMaterialModule() {
       _classCallCheck(this, AngularMaterialModule);
@@ -1457,13 +1594,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       factory: function AngularMaterialModule_Factory(t) {
         return new (t || AngularMaterialModule)();
       },
-      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"]], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_3__["MatProgressBarModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"]]
+      providers: [{
+        provide: _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MAT_TOOLTIP_DEFAULT_OPTIONS"],
+        useValue: {
+          showDelay: 2000
+        }
+      }],
+      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_12__["MatTableModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__["MatProgressSpinnerModule"]], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_3__["MatProgressBarModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_12__["MatTableModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__["MatProgressSpinnerModule"]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AngularMaterialModule, {
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"]],
-        exports: [_angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_3__["MatProgressBarModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"]]
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_12__["MatTableModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__["MatProgressSpinnerModule"]],
+        exports: [_angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_3__["MatProgressBarModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_12__["MatTableModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__["MatProgressSpinnerModule"]]
       });
     })();
     /*@__PURE__*/
@@ -1473,8 +1616,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AngularMaterialModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"]],
-          exports: [_angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_3__["MatProgressBarModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"]]
+          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_12__["MatTableModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__["MatProgressSpinnerModule"]],
+          exports: [_angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_3__["MatProgressBarModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MatTooltipModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_11__["MatDividerModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_12__["MatTableModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_15__["MatProgressSpinnerModule"]],
+          providers: [{
+            provide: _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_9__["MAT_TOOLTIP_DEFAULT_OPTIONS"],
+            useValue: {
+              showDelay: 2000
+            }
+          }]
         }]
       }], null, null);
     })();
@@ -1937,6 +2086,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.matIconRegistry.addSvgIcon('google', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/google.svg'));
         this.matIconRegistry.addSvgIcon('logout', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/logout.svg'));
         this.matIconRegistry.addSvgIcon('vh2', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/vh2.svg'));
+        this.matIconRegistry.addSvgIcon('cruise', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/cruise.svg'));
+        this.matIconRegistry.addSvgIcon('travel', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/travel.svg'));
+        this.matIconRegistry.addSvgIcon('shopping', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/shopping.svg'));
+        this.matIconRegistry.addSvgIcon('flight', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/flight.svg'));
+        this.matIconRegistry.addSvgIcon('sports', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sports.svg'));
+        this.matIconRegistry.addSvgIcon('other', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/other.svg'));
+        this.matIconRegistry.addSvgIcon('search', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/search.svg'));
+        this.matIconRegistry.addSvgIcon('business', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/business.svg'));
+        this.matIconRegistry.addSvgIcon('virtual', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/virtual.svg'));
       }
 
       _createClass(AppComponent, [{
@@ -1977,7 +2135,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       },
       directives: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], _components_alert_component__WEBPACK_IMPORTED_MODULE_5__["AlertComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterOutlet"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_7__["MatToolbar"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterLinkWithHref"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterLinkActive"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_1__["MatIcon"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_8__["_MatMenu"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_9__["MatDivider"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_8__["MatMenuItem"], _angular_material_button__WEBPACK_IMPORTED_MODULE_10__["MatButton"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_8__["MatMenuTrigger"]],
-      styles: [".vh-icon[_ngcontent-%COMP%] {\n  padding: 0 14px;\n}\n\n.vh-logo[_ngcontent-%COMP%] {\n  fill: white;\n  position: relative;\n  top: 3px;\n}\n\n.vh-home[_ngcontent-%COMP%] {\n  font-weight: lighter;\n}\n\n.vh-h[_ngcontent-%COMP%] {\n  font-style: italic;\n  font-weight: lighter;\n}\n\n.vh-spacer[_ngcontent-%COMP%] {\n  flex: 1 1 auto;\n}\n\n.vh-login-google[_ngcontent-%COMP%] {\n  font-size: 16px;\n  cursor: pointer;\n}\n\n.vh-user-name[_ngcontent-%COMP%] {\n  font-size: 14px;\n  line-height: 48px;\n  padding: 0 16px;\n  cursor: default;\n}\n\n.vh-user-image[_ngcontent-%COMP%] {\n  width: 32px;\n  height: 32px;\n  border-bottom-left-radius: 50%;\n  border-bottom-right-radius: 50%;\n  border-top-left-radius: 50%;\n  border-top-right-radius: 50%;\n}\n\n.vh-main[_ngcontent-%COMP%] {\n  max-width: 100%;\n  padding: 32px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaGlyYXlva2VkL3ZhY2h1Yi9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBQTtBQ0NGOztBREVBO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtBQ0NGOztBREVBO0VBQ0Usb0JBQUE7QUNDRjs7QURFQTtFQUNFLGtCQUFBO0VBQ0Esb0JBQUE7QUNDRjs7QURFQTtFQUNFLGNBQUE7QUNDRjs7QURFQTtFQUNFLGVBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSw4QkFBQTtFQUNBLCtCQUFBO0VBQ0EsMkJBQUE7RUFDQSw0QkFBQTtBQ0NGOztBREVBO0VBQ0UsZUFBQTtFQUNBLGFBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi52aC1pY29uIHtcbiAgcGFkZGluZzogMCAxNHB4O1xufVxuXG4udmgtbG9nbyB7XG4gIGZpbGw6IHdoaXRlO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogM3B4O1xufVxuXG4udmgtaG9tZSB7XG4gIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xufVxuXG4udmgtaCB7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgZm9udC13ZWlnaHQ6IGxpZ2h0ZXI7XG59XG5cbi52aC1zcGFjZXIge1xuICBmbGV4OiAxIDEgYXV0bztcbn1cblxuLnZoLWxvZ2luLWdvb2dsZSB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4udmgtdXNlci1uYW1lIHtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBsaW5lLWhlaWdodDogNDhweDtcbiAgcGFkZGluZzogMCAxNnB4O1xuICBjdXJzb3I6IGRlZmF1bHQ7XG59XG5cbi52aC11c2VyLWltYWdlIHtcbiAgd2lkdGg6IDMycHg7XG4gIGhlaWdodDogMzJweDtcbiAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czo1MCU7XG4gIGJvcmRlci1ib3R0b20tcmlnaHQtcmFkaXVzOjUwJTtcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czo1MCU7XG4gIGJvcmRlci10b3AtcmlnaHQtcmFkaXVzOjUwJTtcbn1cblxuLnZoLW1haW4ge1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmc6IDMycHg7XG59XG4iLCIudmgtaWNvbiB7XG4gIHBhZGRpbmc6IDAgMTRweDtcbn1cblxuLnZoLWxvZ28ge1xuICBmaWxsOiB3aGl0ZTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDNweDtcbn1cblxuLnZoLWhvbWUge1xuICBmb250LXdlaWdodDogbGlnaHRlcjtcbn1cblxuLnZoLWgge1xuICBmb250LXN0eWxlOiBpdGFsaWM7XG4gIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xufVxuXG4udmgtc3BhY2VyIHtcbiAgZmxleDogMSAxIGF1dG87XG59XG5cbi52aC1sb2dpbi1nb29nbGUge1xuICBmb250LXNpemU6IDE2cHg7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLnZoLXVzZXItbmFtZSB7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgbGluZS1oZWlnaHQ6IDQ4cHg7XG4gIHBhZGRpbmc6IDAgMTZweDtcbiAgY3Vyc29yOiBkZWZhdWx0O1xufVxuXG4udmgtdXNlci1pbWFnZSB7XG4gIHdpZHRoOiAzMnB4O1xuICBoZWlnaHQ6IDMycHg7XG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDUwJTtcbiAgYm9yZGVyLWJvdHRvbS1yaWdodC1yYWRpdXM6IDUwJTtcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNTAlO1xuICBib3JkZXItdG9wLXJpZ2h0LXJhZGl1czogNTAlO1xufVxuXG4udmgtbWFpbiB7XG4gIG1heC13aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMzJweDtcbn0iXX0= */"]
+      styles: [".vh-icon[_ngcontent-%COMP%] {\n  padding: 0 14px;\n}\n\n.vh-logo[_ngcontent-%COMP%] {\n  fill: white;\n  position: relative;\n  top: 3px;\n}\n\n.vh-home[_ngcontent-%COMP%] {\n  font-weight: lighter;\n}\n\n.vh-h[_ngcontent-%COMP%] {\n  font-style: italic;\n  font-weight: lighter;\n}\n\n.vh-spacer[_ngcontent-%COMP%] {\n  flex: 1 1 auto;\n}\n\n.vh-login-google[_ngcontent-%COMP%] {\n  font-size: 16px;\n  cursor: pointer;\n}\n\n.vh-user-name[_ngcontent-%COMP%] {\n  font-size: 14px;\n  line-height: 48px;\n  padding: 0 16px;\n  cursor: default;\n}\n\n.vh-main[_ngcontent-%COMP%] {\n  max-width: 100%;\n  padding: 32px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaGlyYXlva2VkL3ZhY2h1Yi9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBQTtBQ0NGOztBREVBO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtBQ0NGOztBREVBO0VBQ0Usb0JBQUE7QUNDRjs7QURFQTtFQUNFLGtCQUFBO0VBQ0Esb0JBQUE7QUNDRjs7QURFQTtFQUNFLGNBQUE7QUNDRjs7QURFQTtFQUNFLGVBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsZUFBQTtFQUNBLGFBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi52aC1pY29uIHtcbiAgcGFkZGluZzogMCAxNHB4O1xufVxuXG4udmgtbG9nbyB7XG4gIGZpbGw6IHdoaXRlO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogM3B4O1xufVxuXG4udmgtaG9tZSB7XG4gIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xufVxuXG4udmgtaCB7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgZm9udC13ZWlnaHQ6IGxpZ2h0ZXI7XG59XG5cbi52aC1zcGFjZXIge1xuICBmbGV4OiAxIDEgYXV0bztcbn1cblxuLnZoLWxvZ2luLWdvb2dsZSB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4udmgtdXNlci1uYW1lIHtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBsaW5lLWhlaWdodDogNDhweDtcbiAgcGFkZGluZzogMCAxNnB4O1xuICBjdXJzb3I6IGRlZmF1bHQ7XG59XG5cbi52aC1tYWluIHtcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAzMnB4O1xufVxuIiwiLnZoLWljb24ge1xuICBwYWRkaW5nOiAwIDE0cHg7XG59XG5cbi52aC1sb2dvIHtcbiAgZmlsbDogd2hpdGU7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiAzcHg7XG59XG5cbi52aC1ob21lIHtcbiAgZm9udC13ZWlnaHQ6IGxpZ2h0ZXI7XG59XG5cbi52aC1oIHtcbiAgZm9udC1zdHlsZTogaXRhbGljO1xuICBmb250LXdlaWdodDogbGlnaHRlcjtcbn1cblxuLnZoLXNwYWNlciB7XG4gIGZsZXg6IDEgMSBhdXRvO1xufVxuXG4udmgtbG9naW4tZ29vZ2xlIHtcbiAgZm9udC1zaXplOiAxNnB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi52aC11c2VyLW5hbWUge1xuICBmb250LXNpemU6IDE0cHg7XG4gIGxpbmUtaGVpZ2h0OiA0OHB4O1xuICBwYWRkaW5nOiAwIDE2cHg7XG4gIGN1cnNvcjogZGVmYXVsdDtcbn1cblxuLnZoLW1haW4ge1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmc6IDMycHg7XG59Il19 */"]
     });
     /*@__PURE__*/
 
@@ -2207,7 +2365,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         this.accountService = accountService;
         this.httpClient = httpClient;
-        this.url = 'http://shira-jaxrs-docker-example-git-vachub.apps.us-west-1.starter.openshift-online.com/greet';
+        this.url = 'http://shira-jaxrs-docker-example-git-vachub.apps.us-west-1.starter.openshift-online.com/';
         this.user = this.accountService.userValue;
       }
 
@@ -2223,7 +2381,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getRest",
         value: function getRest() {
-          return this.httpClient.get(this.url, {
+          return this.httpClient.get(this.url + 'vacation', {
             responseType: 'text'
           });
         }
@@ -2239,10 +2397,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "postRest",
         value: function postRest() {
-          return this.httpClient.post(this.url, {
-            id: this.user.id,
-            username: this.user.username,
-            image: this.user.image
+          return this.httpClient.post(this.url + 'vacation', {
+            id: this.user.id + '-1',
+            title: 'my vac',
+            description: 'a great vac',
+            type: 'cruise'
           });
         }
       }]);
@@ -2257,9 +2416,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: HomeComponent,
       selectors: [["ng-component"]],
-      decls: 11,
+      decls: 14,
       vars: 2,
-      consts: [["routerLink", "/users"], ["mat-raised-button", "", "color", "primary", 3, "click"], ["mat-raised-button", "", "color", "accent", 3, "click"]],
+      consts: [["routerLink", "/users/users"], ["routerLink", "/users"], ["mat-raised-button", "", "color", "primary", 3, "click"], ["mat-raised-button", "", "color", "accent", 3, "click"]],
       template: function HomeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
@@ -2278,29 +2437,39 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "button", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "p");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_5_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Manage Vacations");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "button", 2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_8_listener() {
             return ctx.showGetRest();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Get Rest");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Get Rest");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "button", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "button", 3);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_7_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_10_listener() {
             return ctx.showPostRest();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Post Rest");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Post Rest");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "br");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "br");
         }
 
         if (rf & 2) {
@@ -2308,7 +2477,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Hi ", ctx.user.username, "!");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](11);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\nfrom rest: ", ctx.fromRest, "");
         }
