@@ -157,7 +157,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           // subscribe to new alert notifications
           this.alertSubscription = this.alertService.onAlert(this.id).subscribe(function (alert) {
-            // clear alerts when an empty alert is received
+            //remove
+            console.log(alert); // clear alerts when an empty alert is received
+
             if (!alert.message) {
               // filter out alerts without 'keepAfterRouteChange' flag
               _this.alerts = _this.alerts.filter(function (x) {
@@ -1026,14 +1028,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var VacationType;
 
     (function (VacationType) {
-      VacationType["Cruise"] = "Cruise";
-      VacationType["Travel"] = "Travel";
-      VacationType["Sports"] = "Sports";
-      VacationType["Shopping"] = "Shopping";
-      VacationType["Flight"] = "Flight";
-      VacationType["Business"] = "Business";
-      VacationType["Virtual"] = "Virtual";
-      VacationType["Other"] = "Other";
+      VacationType["cruise"] = "cruise";
+      VacationType["travel"] = "travel";
+      VacationType["sports"] = "sports";
+      VacationType["shopping"] = "shopping";
+      VacationType["flight"] = "flight";
+      VacationType["business"] = "business";
+      VacationType["virtual"] = "virtual";
+      VacationType["other"] = "other";
     })(VacationType || (VacationType = {}));
     /***/
 
@@ -1426,8 +1428,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.httpClient.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl, "/vacation"));
         }
       }, {
-        key: "createVacation",
-        value: function createVacation(vacation) {
+        key: "createUpdateVacation",
+        value: function createUpdateVacation(vacation) {
           return this.httpClient.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl, "/vacation"), {
             id: vacation.id,
             title: vacation.title,

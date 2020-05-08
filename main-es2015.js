@@ -73,6 +73,8 @@ class AlertComponent {
         // subscribe to new alert notifications
         this.alertSubscription = this.alertService.onAlert(this.id)
             .subscribe(alert => {
+            //remove
+            console.log(alert);
             // clear alerts when an empty alert is received
             if (!alert.message) {
                 // filter out alerts without 'keepAfterRouteChange' flag
@@ -540,14 +542,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VacationType", function() { return VacationType; });
 var VacationType;
 (function (VacationType) {
-    VacationType["Cruise"] = "Cruise";
-    VacationType["Travel"] = "Travel";
-    VacationType["Sports"] = "Sports";
-    VacationType["Shopping"] = "Shopping";
-    VacationType["Flight"] = "Flight";
-    VacationType["Business"] = "Business";
-    VacationType["Virtual"] = "Virtual";
-    VacationType["Other"] = "Other";
+    VacationType["cruise"] = "cruise";
+    VacationType["travel"] = "travel";
+    VacationType["sports"] = "sports";
+    VacationType["shopping"] = "shopping";
+    VacationType["flight"] = "flight";
+    VacationType["business"] = "business";
+    VacationType["virtual"] = "virtual";
+    VacationType["other"] = "other";
 })(VacationType || (VacationType = {}));
 
 
@@ -743,7 +745,7 @@ class VacationService {
     getAll() {
         return this.httpClient.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl}/vacation`);
     }
-    createVacation(vacation) {
+    createUpdateVacation(vacation) {
         return this.httpClient
             .post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl}/vacation`, { id: vacation.id, title: vacation.title,
             description: vacation.description, type: vacation.type });
