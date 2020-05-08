@@ -162,7 +162,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js");
+
 
 
 
@@ -266,11 +268,11 @@ class LoginComponent {
         }(document, 'script', 'google-jssdk'));
     }
     fakeData() {
-        this.token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4Yjc0MWU4ZGU5ODRhNDcxNTlmMTllNmQ3NzgzZTlkNGZhODEwZGIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODQwOTU3OTE2ODMtamFtcWxjbThva2ZmZW00dWxkZXY2b2FzNjhzdHFqbGguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI4NDA5NTc5MTY4My1qYW1xbGNtOG9rZmZlbTR1bGRldjZvYXM2OHN0cWpsaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMTY3Mzg4NzUyNDE0ODgwODU4MiIsImVtYWlsIjoic2hpcmEueW9rZWRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ4Q0F4NFNBRFVma0pPNUY3ZWdCWVZnIiwibmFtZSI6IlNoaXJhIFlva2VkIiwicGljdHVyZSI6Imh0dHBzOi8vbGg0Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tamVfQlpBaWlkRFEvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQUFLV0pKTWcxODBUNUdhZWpkZmFPR1poZ0JJLURLZGhtdy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiU2hpcmEiLCJmYW1pbHlfbmFtZSI6Illva2VkIiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1ODgxMjAxMzksImV4cCI6MTU4ODEyMzczOSwianRpIjoiYTJmYWYyOWQwYjc0MTY2Yzc0YTdjZWFjZjViMWY0MDU5ZjNjZTBmNSJ9.qkA4O3jqjNsd1MHAZAbertNpOQ0fAYxXuE6NFNuGs9swJ9ZJcWtM9HC13jvc84bD5Bq63ewdCKsKPep1YbVTYKypCkntjHGsHiY5SBt4snDWI7v_4F84n4HZOcymZ8weRqy6t8LKBcHeNMC0mlFYvdFb5IiTaWb5xPtmdKSF_pW2yQFLr2kkylyvTQznmr39wE2DKDgT61sHBz27aH_z-Qvj6on4J6rUjc1m_28KlFgxNSdwDX3JR8_eDvt5d9pCdC-Av4SLEGqO2qEccAJQ4uMi1xFi1s-qi3iVhhQRQg3JfpuwmvvKA1AbsfsB7tzW98ppeht9nMPuqr_4-QXvRg';
-        this.id = '111673887524148808582';
-        this.userName = 'Shira Yoked';
-        this.userImage = 'https://lh4.googleusercontent.com/-je_BZAiidDQ/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMg180T5GaejdfaOGZhgBI-DKdhmw/s96-c/photo.jpg';
-        this.userEmail = 'shira.yoked@gmail.com';
+        this.token = 'abc';
+        this.id = '1';
+        this.userName = 'Guest';
+        this.userImage = '';
+        this.userEmail = 'guest';
     }
 }
 LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"])); };
@@ -279,18 +281,18 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
     } if (rf & 2) {
         var _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.loginElement = _t.first);
-    } }, decls: 7, vars: 0, consts: [["svgIcon", "google", 1, "vh-icon"], [1, "vh-login-google"], ["loginRef", ""], [3, "click"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "mat-icon", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1, 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "span");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "Sign In with Google");
+    } }, decls: 7, vars: 0, consts: [["mat-flat-button", "", "color", "accent", 3, "click"], ["svgIcon", "google", 1, "vh-icon"], [1, "vh-login-google"], ["loginRef", ""]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function LoginComponent_Template_button_click_0_listener() { return ctx.fakeSignIn(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Guest Sign In");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "mat-icon", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 2, 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "span");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Sign In with Google");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "button", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function LoginComponent_Template_button_click_5_listener() { return ctx.fakeSignIn(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "fake sign in");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, directives: [_angular_material_icon__WEBPACK_IMPORTED_MODULE_3__["MatIcon"]], encapsulation: 2 });
+    } }, directives: [_angular_material_button__WEBPACK_IMPORTED_MODULE_3__["MatButton"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIcon"]], encapsulation: 2 });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](LoginComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{ templateUrl: 'login.component.html' }]
