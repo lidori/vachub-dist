@@ -1750,11 +1750,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       path: 'account',
       loadChildren: accountModule
     }, // otherwise redirect to home
-    // { path: '**', redirectTo: '' }
     {
       path: '**',
-      redirectTo: 'account/login'
-    }];
+      redirectTo: ''
+    } //{ path: '**', redirectTo: 'account/login' }
+    ];
 
     var AppRoutingModule = function AppRoutingModule() {
       _classCallCheck(this, AppRoutingModule);
@@ -2320,6 +2320,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _home__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./home */
     "./src/app/home/index.ts");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
     /* Angular material */
     // used to create fake backend
 
@@ -2344,6 +2350,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
         useClass: _helpers__WEBPACK_IMPORTED_MODULE_8__["ErrorInterceptor"],
         multi: true
+      }, {
+        provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["LocationStrategy"],
+        useClass: _angular_common__WEBPACK_IMPORTED_MODULE_11__["HashLocationStrategy"]
       }, // provider used to create fake backend
       _helpers__WEBPACK_IMPORTED_MODULE_8__["fakeBackendProvider"]],
       imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_1__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], _angular_material_module__WEBPACK_IMPORTED_MODULE_5__["AngularMaterialModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"]]]
@@ -2372,6 +2381,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
             useClass: _helpers__WEBPACK_IMPORTED_MODULE_8__["ErrorInterceptor"],
             multi: true
+          }, {
+            provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["LocationStrategy"],
+            useClass: _angular_common__WEBPACK_IMPORTED_MODULE_11__["HashLocationStrategy"]
           }, // provider used to create fake backend
           _helpers__WEBPACK_IMPORTED_MODULE_8__["fakeBackendProvider"]],
           bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]],
