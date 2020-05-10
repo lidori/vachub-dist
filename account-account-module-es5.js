@@ -395,7 +395,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (authenticated) {
               _this.ngZone.run(function () {
                 return _this.router.navigate([_this.returnUrl]);
-              });
+              }); //remove
+
+
+              console.log('hello');
             } else {
               _this.alertService.error('Not authenticated');
 

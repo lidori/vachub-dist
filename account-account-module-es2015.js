@@ -204,6 +204,8 @@ class LoginComponent {
             console.log('in prepare login auth is ', authenticated);
             if (authenticated) {
                 this.ngZone.run(() => this.router.navigate([this.returnUrl]));
+                //remove
+                console.log('hello');
             }
             else {
                 this.alertService.error('Not authenticated');

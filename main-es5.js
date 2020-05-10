@@ -1138,8 +1138,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           console.log('in login user is ', user);
           localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user); //remove
+
+          console.log('create');
           this.createUser(user);
-          this.userSubject.next(user);
           return true;
         } // login(username, password) {
         //     return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
@@ -1176,7 +1178,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createUser",
         value: function createUser(user) {
+          //remove
+          console.log('createUser', user);
+
           if (user.id !== 'guest') {
+            //remove
+            console.log('not guest - create');
             this.http.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl, "/greet"), user);
           }
         }
@@ -2446,62 +2453,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
 
+    var HomeComponent = function HomeComponent(accountService, httpClient) {
+      _classCallCheck(this, HomeComponent);
 
-    var _angular_material_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! @angular/material/button */
-    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
-
-    var HomeComponent = /*#__PURE__*/function () {
-      function HomeComponent(accountService, httpClient) {
-        _classCallCheck(this, HomeComponent);
-
-        this.accountService = accountService;
-        this.httpClient = httpClient;
-        this.url = 'http://shira-jaxrs-docker-example-git-vachub.apps.us-west-1.starter.openshift-online.com/';
-        this.user = this.accountService.userValue;
-      }
-
-      _createClass(HomeComponent, [{
-        key: "showGetRest",
-        value: function showGetRest() {
-          var _this5 = this;
-
-          this.getRest().subscribe(function (result) {
-            return _this5.fromRest = result;
-          });
-        }
-      }, {
-        key: "getRest",
-        value: function getRest() {
-          return this.httpClient.get(this.url + 'vacation', {
-            responseType: 'text'
-          });
-        }
-      }, {
-        key: "showPostRest",
-        value: function showPostRest() {
-          var _this6 = this;
-
-          this.postRest().subscribe(function (result) {
-            return _this6.fromRest = result;
-          });
-        }
-      }, {
-        key: "postRest",
-        value: function postRest() {
-          return this.httpClient.post(this.url + 'vacation', {
-            id: this.user.id + '-1',
-            title: 'my vac',
-            description: 'a great vac',
-            type: 'cruise'
-          });
-        }
-      }]);
-
-      return HomeComponent;
-    }();
+      this.accountService = accountService;
+      this.httpClient = httpClient;
+      this.url = 'http://shira-jaxrs-docker-example-git-vachub.apps.us-west-1.starter.openshift-online.com/';
+      this.user = this.accountService.userValue;
+    };
 
     HomeComponent.ɵfac = function HomeComponent_Factory(t) {
       return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_1__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]));
@@ -2510,9 +2470,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: HomeComponent,
       selectors: [["ng-component"]],
-      decls: 14,
-      vars: 2,
-      consts: [["routerLink", "/users/users"], ["routerLink", "/users"], ["mat-raised-button", "", "color", "primary", 3, "click"], ["mat-raised-button", "", "color", "accent", 3, "click"]],
+      decls: 8,
+      vars: 1,
+      consts: [["routerLink", "/users/users"], ["routerLink", "/users"]],
       template: function HomeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
@@ -2540,43 +2500,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "button", 2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_8_listener() {
-            return ctx.showGetRest();
-          });
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Get Rest");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "button", 3);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_10_listener() {
-            return ctx.showPostRest();
-          });
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Post Rest");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "br");
         }
 
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Hi ", ctx.user.username, "!");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\nfrom rest: ", ctx.fromRest, "");
         }
       },
-      directives: [_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_material_button__WEBPACK_IMPORTED_MODULE_4__["MatButton"]],
+      directives: [_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"]],
       encapsulation: 2
     });
     /*@__PURE__*/
