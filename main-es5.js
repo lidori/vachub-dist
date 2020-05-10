@@ -1138,6 +1138,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           console.log('in login user is ', user);
           localStorage.setItem('user', JSON.stringify(user));
+          this.createUser(user);
           this.userSubject.next(user);
           return true;
         } // login(username, password) {
@@ -1172,6 +1173,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         //     return this.http.post(`${environment.apiUrl}/users/register`, user);
         // }
 
+      }, {
+        key: "createUser",
+        value: function createUser(user) {
+          if (user.id !== 'guest') {
+            this.http.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl, "/greet"), user);
+          }
+        }
       }, {
         key: "getAll",
         value: function getAll() {
