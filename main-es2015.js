@@ -638,9 +638,11 @@ class AccountService {
         //remove
         console.log('createUser', user);
         if (user.id !== 'guest') {
-            //remove
-            console.log('not guest - create');
-            this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/greet`, user);
+            setTimeout(() => {
+                //remove
+                console.log('not guest - create after timeout');
+                this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/greet`, user).subscribe(res => console.log('res', res));
+            }, 5000);
         }
     }
     getAll() {

@@ -1178,13 +1178,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createUser",
         value: function createUser(user) {
+          var _this4 = this;
+
           //remove
           console.log('createUser', user);
 
           if (user.id !== 'guest') {
-            //remove
-            console.log('not guest - create');
-            this.http.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl, "/greet"), user);
+            setTimeout(function () {
+              //remove
+              console.log('not guest - create after timeout');
+
+              _this4.http.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl, "/greet"), user).subscribe(function (res) {
+                return console.log('res', res);
+              });
+            }, 5000);
           }
         }
       }, {
@@ -2159,7 +2166,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var AppComponent = /*#__PURE__*/function () {
       function AppComponent(matIconRegistry, domSanitizer, accountService) {
-        var _this4 = this;
+        var _this5 = this;
 
         _classCallCheck(this, AppComponent);
 
@@ -2167,7 +2174,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.domSanitizer = domSanitizer;
         this.accountService = accountService;
         this.accountService.user.subscribe(function (x) {
-          return _this4.user = x;
+          return _this5.user = x;
         });
         this.matIconRegistry.addSvgIcon('google', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/google.svg'));
         this.matIconRegistry.addSvgIcon('logout', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/logout.svg'));
